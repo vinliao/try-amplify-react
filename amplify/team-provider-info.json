@@ -1,0 +1,19 @@
+{
+    "local": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-project-local-20190509180739-authRole",
+            "UnauthRoleArn": "arn:aws:iam::007921886663:role/amplify-project-local-20190509180739-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::007921886663:role/amplify-project-local-20190509180739-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "amplify-project-local-20190509180739-deployment",
+            "UnauthRoleName": "amplify-project-local-20190509180739-unauthRole",
+            "StackName": "amplify-project-local-20190509180739",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:007921886663:stack/amplify-project-local-20190509180739/a919d6a0-724a-11e9-831b-0af5ec31f136"
+        },
+        "categories": {
+            "auth": {
+                "tryReactCognito": {}
+            }
+        }
+    }
+}

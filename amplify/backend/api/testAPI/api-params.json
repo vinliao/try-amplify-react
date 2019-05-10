@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/getsomething",
+            "lambdaFunction": "getsomethingLambda",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "testAPI",
+    "apiName": "testAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "getsomethingLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-project-local-20190509180739-authRole",
+        "unAuthRoleName": "amplify-project-local-20190509180739-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "getsomethingLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

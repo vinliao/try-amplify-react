@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/try",
+            "lambdaFunction": "tryLambda",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "tryAPI",
+    "apiName": "tryAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "tryLambda"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-project-local-20190509180739-authRole",
+        "unAuthRoleName": "amplify-project-local-20190509180739-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "tryLambda",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
