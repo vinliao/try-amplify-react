@@ -1,6 +1,6 @@
 {
     "identityPoolName": "amplify_project6d6f4f02_identitypool_6d6f4f02",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "lambdaLogPolicy": "tryReactCognito_lambda_log_policy",
     "openIdLambdaRoleName": "tryReactCognito_openid_lambda_role",
     "openIdRolePolicy": "tryReactCognito_openid_pass_role_policy",

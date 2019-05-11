@@ -3,24 +3,17 @@ import logo from './logo.svg';
 import './App.css';
 
 import { withAuthenticator } from 'aws-amplify-react';
-import Amplify, { Auth, API } from 'aws-amplify';
+import Amplify, { Auth, API, Storage } from 'aws-amplify';
 import awsmobile from './aws-exports';
 
 Amplify.configure(awsmobile);
 
-/*
-
-okay, this is the power of aws amplify: being able to connect serverless
-aws resource to the front end with ease. Before I need to create the backend
-and connect it manually to the front end. With this, I can create and integrate the backend
-to the react application easily. Not only that, I also get to use component from aws amplify react
-so I can directly access the resource of my aws account
-
-*/
+// Todo: use dynamodb and s3
 
 class App extends Component{
   state = {
     coolList: [],
+    text: null,
   }
 
   async componentDidMount() {
@@ -41,6 +34,33 @@ class App extends Component{
     } catch (err) {
       console.log('error fetching data..', err)
     }
+  }
+
+  add_to_s3 = (file) => {
+    console.log(file);
+    // how the fuck do I put the content inside?
+    Storage.put('folder_one/' + file.name, file)
+      .then(result => console.log(result))
+      .catch(result => console.log(result));
+  }
+
+  get_dynamodb = async () => {
+    //put some shit to dynamodb
+    console.log('calling get');
+    const response = await API.get('dynamodbAPI', '/items/object/1');
+    alert(JSON.stringify(response, null, 2));
+  }
+
+  put_dynamodb = async (text) => {
+    //put some shit to dynamodb
+    console.log('calling put');
+    const response = await API.post('dynamodbAPI', '/items', {
+      body: {
+        id: '1',
+        name: text
+      }
+    });
+    alert(JSON.stringify(response, null, 2));
   }
 
   render(){
@@ -72,7 +92,34 @@ class App extends Component{
   
             Learn React
           </a>
+
+        {/* s3 code */}
+        <input type="file" onChange={e => {
+          // if file is uploaded, then get the
+          // file data, pass to add_to_s3 function
+
+
+          // this is actually bad practice lol!!!
+          // use states for best practices
+          this.add_to_s3(e.target.files[0]);
+        }}/>
+
+
+        {/* dynamodb code */}
+        <input type="text" onKeyPress={e => {
+          if(e.key === 'Enter'){
+            console.log(e.target.value);
+            // this.setState({text: e.target.value});
+            // pass the reference to dynamodb here
+            console.log('enter is pressed!!!');
+            this.put_dynamodb(e.target.value);
+          }
+        }}/>
+
+        <button onClick={this.get_dynamodb}>GET FROM DDB</button>
+        
         </header>
+
       </div>
     );
   }

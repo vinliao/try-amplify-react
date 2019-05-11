@@ -9,6 +9,7 @@ See the License for the specific language governing permissions and limitations 
 var express = require('express')
 var bodyParser = require('body-parser')
 var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+var axios = require('axios')
 
 // declare a new express app
 var app = express()
@@ -30,11 +31,19 @@ app.use(function(req, res, next) {
 app.get('/getsomething', function(req, res) {
   // Add your code here
   const coolList = ['a', 'b', 'c'];
-  res.json({
-    success: 'get call succeed!', 
-    url: req.url,
-    list: coolList,
-  });
+
+  // get something from external API
+  axios.get('https://jsonplaceholder.typicode.com/posts/1')
+    .then(response => {
+      res.json({
+        success: 'get call succeed!', 
+        url: req.url,
+        list: coolList,
+        response: response.data,
+        whatever: 'dude like whatever'
+      })
+    });
+
 });
 
 app.get('/getsomething/*', function(req, res) {

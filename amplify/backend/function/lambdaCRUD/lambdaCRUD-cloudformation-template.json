@@ -4,6 +4,14 @@
 	"Parameters": {
 		"env": {
 			"Type": "String"
+		},
+		"storageamplifyTableName": {
+			"Type": "String",
+			"Default": "storageamplifyTableName"
+		},
+		"storageamplifyTableArn": {
+			"Type": "String",
+			"Default": "storageamplifyTableArn"
 		}
 	},
 	"Conditions": {
@@ -28,12 +36,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"getsomethingLambda",
+						"lambdaCRUD",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"getsomethingLambda",
+									"lambdaCRUD",
 									"-",
 									{
 										"Ref": "env"
@@ -60,7 +68,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-project-local-20190509180739-deployment",
-					"S3Key": "amplify-builds/getsomethingLambda-1557546555-latest-build.zip"
+					"S3Key": "amplify-builds/lambdaCRUD-1557549120-latest-build.zip"
 				}
 			}
 		},
@@ -70,12 +78,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"amplifyprojectLambdaRole4a396b6e",
+						"amplifyprojectLambdaRole62feaf42",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"amplifyprojectLambdaRole4a396b6e",
+									"amplifyprojectLambdaRole62feaf42",
 									"-",
 									{
 										"Ref": "env"
@@ -141,6 +149,22 @@
 									}
 								]
 							}
+						},
+						{
+							"Effect": "Allow",
+							"Action": [
+								"dynamodb:GetItem",
+								"dynamodb:Query",
+								"dynamodb:Scan",
+								"dynamodb:PutItem",
+								"dynamodb:UpdateItem",
+								"dynamodb:DeleteItem"
+							],
+							"Resource": [
+								{
+									"Ref": "storageamplifyTableArn"
+								}
+							]
 						}
 					]
 				}

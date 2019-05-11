@@ -11,6 +11,21 @@
 			"providerPlugin": "awscloudformation",
 			"build": true,
 			"dependsOn": []
+		},
+		"lambdaCRUD": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "amplifyTable",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"api": {
@@ -41,11 +56,35 @@
 					]
 				}
 			]
+		},
+		"dynamodbAPI": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "lambdaCRUD",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			]
 		}
 	},
 	"auth": {
 		"tryReactCognito": {
 			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"supercoolbucket": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		},
+		"amplifyTable": {
+			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation"
 		}
 	}

@@ -1,11 +1,11 @@
 {
-  "name": "getsomethingLambda",
+  "name": "lambdaCRUD",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "aws-sdk": "^2.49.0",
     "aws-serverless-express": "^3.3.5",
-    "axios": "^0.18.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2"
   },

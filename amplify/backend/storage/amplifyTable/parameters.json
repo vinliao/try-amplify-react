@@ -1,0 +1,5 @@
+{
+    "tableName": "amplifyTable",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S"
+}

@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "lambdaCRUD",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "dynamodbAPI",
+    "apiName": "dynamodbAPI",
+    "functionArns": [
+        {
+            "lambdaFunction": "lambdaCRUD"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-project-local-20190509180739-authRole",
+        "unAuthRoleName": "amplify-project-local-20190509180739-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "lambdaCRUD",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
